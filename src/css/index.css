@@ -78,6 +78,16 @@ button {
 	grid-auto-columns: 1fr;
 }
 
+
+#clearAll {
+	min-width: 9.4rem;
+}
+
+#clearOne {
+	min-width: 4.68rem;
+	padding-bottom: 0.35rem;
+}
+
 .operations {
 	grid-area: oper;
 }
