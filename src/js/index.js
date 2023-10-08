@@ -27,10 +27,10 @@ function getDigit(e) {
     total.innerText += `${e.currentTarget.innerText}`;
     return;
   }
-  /*//숫자 세자리까지만 입력 가능하다는 경고창 구현
+  //숫자 세자리까지만 입력 가능하다는 경고창 구현
   if (!pattern.test(temp)) {
     alert("숫자는 세 자리 까지만 입력 가능합니다!");
-  }*/
+  }
 }
 
 function getOperation(e) {
@@ -55,6 +55,9 @@ function getModifier(e) {
   total.innerText = "0";
 }
 
+// 정규식대로 total.innerText에 입력된 값에서 = 기호 클릭 시 계산 결과를 total.innerText에 넣기 
+const calButton = document.getElementById('calButton');
+calButton.addEventListener("click", calculate);
 
 function calculate() {
   const pattern = /^\d{1,3}([\/\X\-\+]{1}\d{1,3})?$/;
