@@ -25,7 +25,12 @@ function getDigit(e) {
   
   if (pattern.test(temp)) {
     total.innerText += `${e.currentTarget.innerText}`;
+    return;
   }
+  /*//숫자 세자리까지만 입력 가능하다는 경고창 구현
+  if (!pattern.test(temp)) {
+    alert("숫자는 세 자리 까지만 입력 가능합니다!");
+  }*/
 }
 
 function getOperation(e) {
@@ -50,9 +55,6 @@ function getModifier(e) {
   total.innerText = "0";
 }
 
-// 정규식대로 total.innerText에 입력된 값에서 = 기호 클릭 시 계산 결과를 total.innerText에 넣기 
-const calButton = document.getElementById('calButton');
-calButton.addEventListener("click", calculate);
 
 function calculate() {
   const pattern = /^\d{1,3}([\/\X\-\+]{1}\d{1,3})?$/;
@@ -66,14 +68,33 @@ function calculate() {
     return;
   }
 
-
-  // innerText가 앞자리 숫자만 있거나 정규식대로 끝날 때
+  // innerText가 앞자리 숫자만 있거나 정규식대로 끝날 때 = 기호 클릭 시 결과 출력
   if (pattern.test(total.innerText)) {
     let text = total.innerText;
     console.log(typeof text, text);
 
-
-
+    if (text.includes("/")) {
+      const [before, after] = text.split("/").map(Number);
+      total.innerText = Math.floor(before/after);
+      return;
+    }
+    if (text.includes("+")) {
+      const [before, after] = text.split("+").map(Number);
+      total.innerText = before + after;
+      return;
+    }
+    if (text.includes("-")) {
+      const [before, after] = text.split("-").map(Number);
+      total.innerText = before - after;
+      return;
+    }
+    if (text.includes("X")) {
+      const [before, after] = text.split("X").map(Number);
+      total.innerText = before * after;
+      return;
+    }
   }
 }
+
+// 한칸 지우는 버튼 추가 구현해보기
 
