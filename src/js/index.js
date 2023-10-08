@@ -13,13 +13,38 @@ for (let i = 0; i < operations.length; i++) {
 
 modifier.addEventListener("click", getModifier);
 
+// /^\d{3}$/
 
 function getDigit(e) {
-  total.innerText = `${e.currentTarget.innerText}`;
+  //const pattern = /^\d{3}$/;
+
+  const pattern = /^\d{1,3}([\/\X\-\+]{1}\d{1,3})?$/;
+  if (total.innerText === '0') {
+    total.innerText = `${e.currentTarget.innerText}`;
+    return;
+  }
+
+  const temp = `${total.innerText}` + `${e.currentTarget.innerText}`;
+  //console.log(temp);
+  
+  if (pattern.test(temp)) {
+    total.innerText += `${e.currentTarget.innerText}`
+  }
+  
 }
 
 function getOperation(e) {
-  total.innerText = `${e.currentTarget.innerText}`;
+  const pattern = /^\d{1,3}([\/\X\-\+]{1})?$/;
+  if (total.innerText === '0' || total.innerText[total.innerText.length-1] === '/'
+  || total.innerText[total.innerText.length-1] ==='X' || total.innerText[total.innerText.length-1] === '-' ||
+  total.innerText[total.innerText.length-1] === '+' || total.innerText[total.innerText.length-1] === '=') {
+    return;
+  }
+  const temp = `${total.innerText}` + `${e.currentTarget.innerText}`;
+  console.log(temp);
+  if (pattern.test(temp)) {
+    total.innerText += `${e.currentTarget.innerText}`;
+  }
 }
 
 function getModifier(e) {
