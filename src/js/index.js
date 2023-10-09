@@ -1,6 +1,7 @@
 const digits = document.querySelectorAll('.digit');
 const operations = document.querySelectorAll('.operation');
-const modifier = document.querySelector('.modifier');
+const clearAllButton = document.getElementById('clearAll');
+const clearOneButton = document.getElementById('clearOne');
 const total = document.querySelector('h1');
 
 for (let i = 0; i < digits.length; i++) {
@@ -11,7 +12,9 @@ for (let i = 0; i < operations.length-1; i++) {
   operations[i].addEventListener("click", getOperation);
 }
 
-modifier.addEventListener("click", getModifier);
+clearAllButton.addEventListener("click", getClearAll);
+
+clearOneButton.addEventListener("click", getClearOne);
 
 function getDigit(e) {
   const pattern = /^\d{1,3}([\/\X\-\+]{1}\d{1,3})?$/;
@@ -51,8 +54,15 @@ function getOperation(e) {
   }
 }
 
-function getModifier(e) {
+function getClearAll(e) {
   total.innerText = "0";
+}
+
+// 입력값 중 한 칸 지우는 버튼 동작 구현
+function getClearOne(e) {
+  let tempStr = total.innerText;
+  let newStr = tempStr.substring(0, tempStr.length-1);
+  total.innerText = newStr;
 }
 
 // 정규식대로 total.innerText에 입력된 값에서 = 기호 클릭 시 계산 결과를 total.innerText에 넣기 
@@ -74,7 +84,6 @@ function calculate() {
   // innerText가 앞자리 숫자만 있거나 정규식대로 끝날 때 = 기호 클릭 시 결과 출력
   if (pattern.test(total.innerText)) {
     let text = total.innerText;
-    console.log(typeof text, text);
 
     if (text.includes("/")) {
       const [before, after] = text.split("/").map(Number);
