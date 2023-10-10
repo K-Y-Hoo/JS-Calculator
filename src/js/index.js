@@ -1,9 +1,11 @@
 import { setTotal } from "./utils.js";
-
 import { operatorsArray, 
          TOTAL_PATTERN, OPERATION_PATTERN } from "./const.js";
+
 const total = document.querySelector('h1');
+
 const digits = document.querySelectorAll('.digit');
+
 for (let i = 0; i < digits.length; i++) {
   digits[i].addEventListener("click", getDigit);
 }
