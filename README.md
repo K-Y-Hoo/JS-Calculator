@@ -16,7 +16,7 @@
 
 ## 🔥 Project!
 <p align="middle">
-
+  <img src="./src/images/image.png"/>
 
 <p align="middle">
   <a href="">🖥️ 데모 링크</a>
