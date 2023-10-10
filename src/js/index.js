@@ -90,68 +90,15 @@ function calculate() {
   }
 
   if (pattern.test(total.innerText)) {
-    let text = total.innerText;
+    const text = total.innerText;
+
     if (text[0] !== '-') {
       operatorsArray.forEach(el => setTotal(text, el));
-
-      /*setTotal(text, "/");
-      setTotal(text, "+");
-      setTotal(text, "-");
-      setTotal(text, "X");*/
-
-      /*if (text.includes("/")) {
-        const [before, after] = text.split("/").map(Number);
-        total.innerText = Math.floor(before/after);
-        return;
-      }
-      if (text.includes("+")) {
-        const [before, after] = text.split("+").map(Number);
-        total.innerText = before + after;
-        return;
-      }
-      if (text.includes("-")) {
-        const [before, after] = text.split("-").map(Number);
-        total.innerText = before - after;
-        return;
-      }
-      if (text.includes("X")) {
-        const [before, after] = text.split("X").map(Number);
-        total.innerText = before * after;
-        return;
-      }*/
-
     } else {
-      let text = total.innerText.substring(1,total.innerText.length);
-      if (text.includes("/")) {
-        const [before, after] = text.split("/").map(Number);
-        total.innerText =  -1 * before / after;
-        return; 
-      }
-      if (text.includes("+")) {
-        const [before, after] = text.split("+").map(Number);
-        total.innerText =  (-1 * before + after);
-        return; 
-      }
-      if (text.includes("-")) {
-        const [before, after] = text.split("-").map(Number);
-        total.innerText =  (-1 * before - after);
-        return; 
-      }
-      if (text.includes("X")) {
-        const [before, after] = text.split("X").map(Number);
-        total.innerText =  -1 * before * after;
-        return; 
-      }
+      const text = total.innerText.substring(1,total.innerText.length);
+      operatorsArray.forEach(el => setTotal(text, el, -1));
     }
   }
 }
 
 
-// 코드 리팩토링하기
-
-
-// 1. 연산 결과값이 네자리 수 이상일 때 추가적인 연산 가능하게 하기. 
-//    새로운 함수 만들어서 total.innerText 값이 네자리 이상이면...
-
-// 2. 연산 결과값이 8자리 수 이상일 때 출력되는 결과값의 폰트 사이즈를 동적으로 줄이기
-// total.innerText의 길이/8의 몫을 변수에 할당하고 그 변수보다 작게 for문 돌려서 innerHTML에 </br> 태그 추가..? 

@@ -1,27 +1,26 @@
+import { splitToNumber } from "./string.js";
+
 export const operatorsArray = ["/", "+", "-", "X"];
 
-export function setTotal (str, operator) {
+export function setTotal (str, operator, sign = 1) {
+  const [before, after] = splitToNumber(str, operator);
   if (str.includes(operator) && operator === '+') {
-    const [before, after] = str.split(operator).map(Number);
-    total.innerText = add(before, after);
+    total.innerText = add(sign * before, after);
     return;
   }
   if (str.includes(operator) && operator === '-') {
-    const [before, after] = str.split(operator).map(Number);
-    total.innerText = subtract(before, after);
+    total.innerText = subtract(sign * before, after);
     return;
   }
   if (str.includes(operator) && operator === '/') {
-    const [before, after] = str.split(operator).map(Number);
-    total.innerText = divide(before, after);
+    total.innerText = divide(sign * before, after);
     return;
   }
   if (str.includes(operator) && operator === 'X') {
-    const [before, after] = str.split(operator).map(Number);
-    total.innerText = multiply(before, after);
+    total.innerText = multiply(sign * before, after);
     return;
   }
-}
+} 
 
 function add(a, b) {
   return a + b;
