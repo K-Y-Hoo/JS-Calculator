@@ -1,13 +1,15 @@
-import { setTotal, operatorsArray } from "./utils.js";
+import { setTotal } from "./utils.js";
 
+import { operatorsArray, 
+         TOTAL_PATTERN, OPERATION_PATTERN } from "./const.js";
+const total = document.querySelector('h1');
 const digits = document.querySelectorAll('.digit');
-
 for (let i = 0; i < digits.length; i++) {
   digits[i].addEventListener("click", getDigit);
 }
 
 function getDigit(e) {
-  const pattern = /^-?\d{1,3}([\/\X\-\+]{1}\d{1,3})?$/;
+  const pattern = TOTAL_PATTERN;
 
   if (total.innerText === '0') {
     total.innerText = `${e.currentTarget.innerText}`;
@@ -22,7 +24,7 @@ function getDigit(e) {
   }
  
   if (!pattern.test(temp)) {
-    alert("숫자는 세 자리 까지만 입력 가능합니다!");
+    alert("숫자는 세 자리 까지만 입력 가능합니다.");
   }
 }
 
@@ -33,16 +35,17 @@ for (let i = 0; i < operations.length-1; i++) {
 }
 
 function getOperation(e) {
-  const pattern = /^-?\d{1,3}([\/\X\-\+]{1})?$/;
-
-  if (total.innerText === '0' 
-  || total.innerText[total.innerText.length-1] === '/'
-  || total.innerText[total.innerText.length-1] ==='X' 
-  || total.innerText[total.innerText.length-1] === '-' 
-  || total.innerText[total.innerText.length-1] === '+' 
-  || total.innerText[total.innerText.length-1] === '=') {
+  const pattern = OPERATION_PATTERN;
+  const LAST_STRING_OF_TOTAL_INNERTEXT = total.innerText[total.innerText.length-1];
+  if (total.innerText === '0') {
+    alert('먼저 숫자를 눌러주세요.');
     return;
   }
+  if (operatorsArray.includes(LAST_STRING_OF_TOTAL_INNERTEXT)) {
+    alert('연산자는 두 번 연속으로 사용할 수 없습니다.');
+    return;
+  }
+  
 
   const temp = `${total.innerText}` + `${e.currentTarget.innerText}`;
 
@@ -57,7 +60,6 @@ clearAllButton.addEventListener("click", getClearAll);
 const clearOneButton = document.getElementById('clearOne');
 clearOneButton.addEventListener("click", getClearOne);
 
-const total = document.querySelector('h1');
 
 function getClearAll(e) {
   total.innerText = "0";
@@ -80,11 +82,9 @@ const calButton = document.getElementById('calButton');
 calButton.addEventListener("click", calculate);
 
 function calculate() {
-  const pattern = /^-?\d{1,3}([\/\X\-\+]{1}\d{1,3})?$/;
-  if (total.innerText[total.innerText.length-1] === '/'
-  || total.innerText[total.innerText.length-1] ==='X' 
-  || total.innerText[total.innerText.length-1] === '-' 
-  || total.innerText[total.innerText.length-1] === '+') {
+  const pattern = TOTAL_PATTERN;
+  const LAST_STRING_OF_TOTAL_INNERTEXT = total.innerText[total.innerText.length-1];
+  if (operatorsArray.includes(LAST_STRING_OF_TOTAL_INNERTEXT)) {
     alert("완성되지 않은 수식입니다.")
     return;
   }

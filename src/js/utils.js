@@ -1,7 +1,5 @@
 import { splitToNumber } from "./string.js";
 
-export const operatorsArray = ["/", "+", "-", "X"];
-
 export function setTotal (str, operator, sign = 1) {
   const [before, after] = splitToNumber(str, operator);
   if (str.includes(operator) && operator === '+') {
