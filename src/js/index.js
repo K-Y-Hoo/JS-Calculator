@@ -55,14 +55,15 @@ function getOperation(e) {
     total.innerText += `${e.currentTarget.innerText}`;
   }
 }
+window.addEventListener("keydown", e => console.log(e));
 
 const clearAllButton = document.getElementById('clearAll');
 clearAllButton.addEventListener("click", getClearAll);
 window.addEventListener("keydown", getClearAllByKey);
-window.addEventListener("keydown", e => console.log(e));
+
 const clearOneButton = document.getElementById('clearOne');
 clearOneButton.addEventListener("click", getClearOne);
-
+window.addEventListener("keydown", getClearOneByKey);
 
 function getClearAll() {
   total.innerText = "0";
@@ -73,7 +74,7 @@ function getClearAllByKey(e) {
   if (key === "Escape") getClearAll();
 }
 
-function getClearOne(e) {
+function getClearOne() {
   if (total.innerText === '0') {
     return;
   }
@@ -84,6 +85,11 @@ function getClearOne(e) {
   let tempStr = total.innerText;
   let newStr = tempStr.substring(0, tempStr.length-1);
   total.innerText = newStr;
+}
+
+function getClearOneByKey(e) {
+  const key = e.key;
+  if (key === "Backspace") getClearOne();
 }
 
 const calButton = document.getElementById('calButton');
