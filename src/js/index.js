@@ -58,13 +58,19 @@ function getOperation(e) {
 
 const clearAllButton = document.getElementById('clearAll');
 clearAllButton.addEventListener("click", getClearAll);
-
+window.addEventListener("keydown", getClearAllByKey);
+window.addEventListener("keydown", e => console.log(e));
 const clearOneButton = document.getElementById('clearOne');
 clearOneButton.addEventListener("click", getClearOne);
 
 
-function getClearAll(e) {
+function getClearAll() {
   total.innerText = "0";
+}
+
+function getClearAllByKey(e) {
+  const key = e.key;
+  if (key === "Escape") getClearAll();
 }
 
 function getClearOne(e) {
