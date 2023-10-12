@@ -4,6 +4,28 @@ import { operatorsArray,
 
 const total = document.querySelector('h1');
 
+
+const observer = new MutationObserver((mutationList, observer) => {
+  const currentLength = total.innerText.length;
+  if (currentLength >= 12) {
+    total.classList.add("lowerFontSizeHarder");
+    total.classList.remove("lowerFontSize");
+  }
+  if (currentLength >= 8 && currentLength < 12) {
+    total.classList.add("lowerFontSize");
+    total.classList.remove("lowerFontSizeHarder");
+    return;
+  }
+  if (currentLength < 8) {
+    total.classList.remove("lowerFontSize");
+    total.classList.remove("lowerFontSizeHarder");
+    return;
+  }
+});
+const config = { CharacterData: true, childList: true, subtree: true };
+observer.observe(total, config);
+
+
 const digits = document.querySelectorAll('.digit');
 
 window.addEventListener("keydown", preventKey);
@@ -36,7 +58,7 @@ function getDigit(e) {
   }
  
   if (!pattern.test(temp)) {
-    alert("숫자는 세 자리 까지만 입력 가능합니다.");
+    alert("숫자는 열 자리 까지만 입력 가능합니다.");
   }
 }
 
@@ -61,7 +83,7 @@ function getDigitByKey(e) {
       }
     
       if (!pattern.test(temp)) {
-        alert("숫자는 세 자리 까지만 입력 가능합니다.");
+        alert("숫자는 열 자리 까지만 입력 가능합니다.");
       }
     }
   }
@@ -92,7 +114,7 @@ function getOperation(e) {
     total.innerText += `${e.currentTarget.innerText}`;
   }
 }
-window.addEventListener("keydown", e => console.log(e));
+//window.addEventListener("keydown", e => console.log(e));
 
 
 const clearAllButton = document.getElementById('clearAll');
