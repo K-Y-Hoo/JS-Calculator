@@ -9,9 +9,9 @@ const digits = document.querySelectorAll('.digit');
 window.addEventListener("keydown", preventKey);
 function preventKey(e) {
   const key = e.key;
-  if (key === "Enter" || key === "Space" || key === "Tab") {
+  if (key === "Enter" || key === " " || key === "Tab") {
     e.preventDefault();
-    return; 
+    return;  
   }
 }
 
@@ -132,6 +132,7 @@ function getClearOneByKey(e) {
 
 const calButton = document.getElementById('calButton');
 calButton.addEventListener("click", calculate);
+window.addEventListener("keydown", calculateByKey);
 
 function calculate() {
   const pattern = TOTAL_PATTERN;
@@ -150,6 +151,13 @@ function calculate() {
       const text = total.innerText.substring(1,total.innerText.length);
       operatorsArray.forEach(el => setTotal(text, el, -1));
     }
+  }
+}
+
+function calculateByKey(e) {
+  const key = e.key;
+  if (key === "Enter") {
+    calculate();
   }
 }
 
