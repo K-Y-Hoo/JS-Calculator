@@ -6,6 +6,15 @@ const total = document.querySelector('h1');
 
 const digits = document.querySelectorAll('.digit');
 
+window.addEventListener("keydown", preventKey);
+function preventKey(e) {
+  const key = e.key;
+  if (key === "Enter" || key === "Space" || key === "Tab") {
+    e.preventDefault();
+    return; 
+  }
+}
+
 for (let i = 0; i < digits.length; i++) {
   digits[i].addEventListener("click", getDigit);
 }
@@ -56,6 +65,7 @@ function getOperation(e) {
   }
 }
 window.addEventListener("keydown", e => console.log(e));
+
 
 const clearAllButton = document.getElementById('clearAll');
 clearAllButton.addEventListener("click", getClearAll);
