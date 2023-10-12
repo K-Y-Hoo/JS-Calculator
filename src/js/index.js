@@ -20,6 +20,7 @@ for (let i = 0; i < digits.length; i++) {
 }
 
 function getDigit(e) {
+  
   const pattern = TOTAL_PATTERN;
 
   if (total.innerText === '0') {
@@ -36,6 +37,33 @@ function getDigit(e) {
  
   if (!pattern.test(temp)) {
     alert("숫자는 세 자리 까지만 입력 가능합니다.");
+  }
+}
+
+window.addEventListener('keydown', getDigitByKey);
+
+function getDigitByKey(e) {
+  const key = e.key;
+  for (let i = 0; i < 10; i++) {
+    if (key === String(i)) {
+      const pattern = TOTAL_PATTERN;
+
+      if (total.innerText === '0') {
+        total.innerText = String(i);
+        return;
+      }
+
+      const temp = `${total.innerText}` + String(i);
+      
+      if (pattern.test(temp)) {
+        total.innerText += String(i);
+        return;
+      }
+    
+      if (!pattern.test(temp)) {
+        alert("숫자는 세 자리 까지만 입력 가능합니다.");
+      }
+    }
   }
 }
 
