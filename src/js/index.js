@@ -4,7 +4,6 @@ import { operatorsArray,
 
 const total = document.querySelector('h1');
 
-
 const observer = new MutationObserver((mutationList, observer) => {
   const currentLength = total.innerText.length;
   if (currentLength >= 12) {
@@ -172,6 +171,11 @@ function calculate() {
     } else {
       const text = total.innerText.substring(1,total.innerText.length);
       operatorsArray.forEach(el => setTotal(text, el, -1));
+    }
+    if (total.innerText.length > 10) {
+      alert('결과값이 너무 커서 추가적인 연산은 불가능합니다!\n프로그램을 종료합니다.');
+      total.innerText = '0';
+      return;
     }
   }
 }

@@ -15,6 +15,11 @@ export function setTotal (str, operator, sign = 1) {
     return;
   }
   if (str.includes(operator) && operator === 'X') {
+    if (multiply(before, after) >= 2**53 - 1) {
+      alert('결과값이 자바스크립트의 숫자값 표현 한계(2^53-1)를 넘었습니다!\n프로그램을 종료합니다.');
+      total.innerText = '0';
+      return;
+    }
     total.innerText = multiply(sign * before, after);
     return;
   }
