@@ -54,6 +54,7 @@ button {
 	justify-content: flex-end;
 	align-items: flex-end;
 	font-size: 4rem;
+	line-height: 4rem;
 }
 
 .digits {
@@ -80,11 +81,11 @@ button {
 
 
 #clearAll {
-	min-width: 9.4rem;
+	width: 9.4rem;
 }
 
 #clearOne {
-	min-width: 4.68rem;
+	width: 4.68rem;
 	padding-bottom: 0.35rem;
 }
 

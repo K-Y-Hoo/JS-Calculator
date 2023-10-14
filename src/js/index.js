@@ -113,8 +113,6 @@ function getOperation(e) {
     total.innerText += `${e.currentTarget.innerText}`;
   }
 }
-//window.addEventListener("keydown", e => console.log(e));
-
 
 const clearAllButton = document.getElementById('clearAll');
 clearAllButton.addEventListener("click", getClearAll);
