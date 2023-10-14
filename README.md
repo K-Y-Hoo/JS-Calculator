@@ -19,7 +19,7 @@
   <img src="./src/images/image.png"/>
 
 <p align="middle">
-  <a href="">🖥️ 데모 링크는 준비중입니다.</a>
+  <a href="https://k-y-hoo.github.io/JS-Calculator/">🖥️ 배포 링크</a>
 </p>
 
 
